@@ -1,5 +1,7 @@
 package sun.containers.array.filler;
 
+import sun.containers.fillers.Pair;
+
 public class SerialGenerator {
 	
 	public static class Byte implements Generator<java.lang.Byte>{
@@ -76,6 +78,55 @@ public class SerialGenerator {
 	
 		
 	}
+		
+		
+		public static class CountryNames implements Generator<java.lang.String>{
+int index=0;
+			java.lang.String[] counString= CountriesName.getCountriesNames();
+			@Override
+			public java.lang.String next() {
+				if(index==counString.length)
+					index=0;
+				return counString[index++];
+			}
+			
+			
+		}
+		
+		public static class AlphaNumeric implements Generator<java.lang.String>{
+
+			private Generator<java.lang.Character> alpha = new Character(true);
+			private Generator<java.lang.Integer> numeric = new Integer();
+			java.lang.Character ch=alpha.next();
+			java.lang.Integer nu=null;
+			int counter=0;
+			 int numericLimit;
+			public AlphaNumeric() {
+				this.numericLimit=9;
+			}
+			
+			public AlphaNumeric(int numericLimit) {
+				this.numericLimit=numericLimit;
+			}
+			
+			
+			@Override
+			public java.lang.String next() {
+				StringBuilder sb = new StringBuilder();	
+				nu=numeric.next();
+				sb.append(ch).append(nu);
+			
+				counter++;
+				if(counter==numericLimit){
+					numeric=new Integer();
+					ch=alpha.next();
+					counter=0;
+				}
+				return new java.lang.String(sb);
+			}
+			
+		}
+	
 		
 		
 

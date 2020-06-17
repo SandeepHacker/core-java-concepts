@@ -85,8 +85,31 @@ public class RandomGenerator {
 		}	
 		
 		
+		public static class LocalDateTime implements Generator<java.time.LocalDateTime>{
+			
+			
+			@Override
+			public java.time.LocalDateTime next() {
+				Random r = new Random();
+			
+				java.time.LocalDateTime now = java.time.LocalDateTime.now();
+				int year = (60 * 60 * 24 * 365)/2;
+				return now.plusSeconds((long) r.nextInt( year));// +- 2 years;
+		}
 		
+		}
+public static class LocalDate implements Generator<java.time.LocalDate>{
+			
+			
+			@Override
+			public java.time.LocalDate next() {
+				Random r = new Random();
+			
+				java.time.LocalDate now = java.time.LocalDate.now();
+				int year = 366/2;
+				return now.plusDays((long) r.nextInt( year));// +- 2 years;
+		}
 		
-		
+		}
 
 }

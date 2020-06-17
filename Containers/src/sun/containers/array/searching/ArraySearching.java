@@ -3,6 +3,7 @@ package sun.containers.array.searching;
 import java.util.Arrays;
 import java.util.Random;
 
+import sun.containers.array.copy.ArrayCopying;
 import sun.containers.array.filler.ArrayGenerator;
 import sun.containers.array.filler.ConvertTo;
 import sun.containers.array.filler.Generator;
@@ -36,11 +37,15 @@ public class ArraySearching {
 	}
 		
 	
-	
+	String [] countires = new String[200];
 	//searching a country in countries
-	String [] countires = ArrayGenerator.fillArray(String.class,new RandomGenerator.CountryNames(),150);
+//	String [] countires = ArrayGenerator.fillArray(String.class,new RandomGenerator.CountryNames(),150);
+	ArrayGenerator.fillArray(countires, new RandomGenerator.CountryNames(),150);
 	System.out.println("ArraySearching.main()"+Arrays.toString(countires));
-	searchArray(countires, "India");
+//	searchArray(countires, "India");
+	
+	String[] s = ArrayCopying.copyArrayRemovingNull(countires);
+	System.out.println("ArraySearching.main()"+Arrays.toString(s));
 	
 	}
 	

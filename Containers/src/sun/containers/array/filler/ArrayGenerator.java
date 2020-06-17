@@ -11,6 +11,11 @@ If we pass a primitive array to this method compiler will complain as primitive 
 			arr[i]=gen.next();
 	}
 	
+	public static<T>  void fillArray(T[] arr, Generator<T> gen,int size){
+		for(int i=0;i<size;i++)
+			arr[i]=gen.next();
+	}
+	
 	/*This method take the Class as argument and create the array with the specified size and fill the Array using Generator*/
 	@SuppressWarnings("unchecked")
 	public static <T>T[] fillArray(Class<?> clazz, Generator<T> gen,int size){
